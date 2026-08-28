@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude para Abogados | MEFARIAS Legal-Tech</title>
+  <meta name="description" content="Guía interactiva y stack profesional de Claude, Proyectos, Artefactos y Cowork para abogados argentinos — Por Dra. María Elisa Farías.">
+  <meta name="author" content="Dra. María Elisa Farías">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Claude para Abogados | MEFARIAS Legal-Tech">
+  <meta property="og:description" content="Guía completa interactiva de Proyectos, Artefactos y Cowork para abogados con IA.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clase-claude.mefarias.com.ar">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #0a0814;
+      --bg-surface: #120e24;
+      --bg-surface-elevated: #1a1532;
+      --bg-surface-hover: #231c42;
+      --border-subtle: rgba(168, 85, 247, 0.16);
+      --border-focus: rgba(168, 85, 247, 0.5);
+      --border-glow: rgba(192, 132, 252, 0.35);
+      
+      --brand-primary: #8b5cf6;
+      --brand-light: #c084fc;
+      --brand-dark: #6d28d9;
+      --brand-deep: #4c1d95;
+      --brand-gradient: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #4f46e5 100%);
+      --accent-glow: 0 0 25px rgba(139, 92, 246, 0.25);
+      
+      --text-main: #f5f3ff;
+      --text-muted: #a78bfa;
+      --text-dim: #94a3b8;
+      --text-dark: #cbd5e1;
+      
+      --success-bg: rgba(34, 197, 94, 0.15);
+      --success-text: #4ade80;
+      --success-border: rgba(34, 197, 94, 0.3);
+      
+      --warning-bg: rgba(234, 179, 8, 0.15);
+      --warning-text: #facc15;
+      --warning-border: rgba(234, 179, 8, 0.3);
+
+      --danger-bg: rgba(239, 68, 68, 0.15);
+      --danger-text: #f87171;
+      --danger-border: rgba(239, 68, 68, 0.3);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.65;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.15), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(124, 58, 237, 0.12), transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.05), transparent 60%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* Header & Branding */
+    .header {
+      margin-bottom: 2.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid var(--border-subtle);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--brand-light);
+      margin-bottom: 1.25rem;
+      box-shadow: var(--accent-glow);
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #a855f7;
+      box-shadow: 0 0 8px #c084fc;
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .header h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 0%, #ddd6fe 60%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p.subtitle {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      max-width: 650px;
+      margin: 0 auto 1.5rem;
+      font-weight: 400;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+      color: var(--text-dim);
+    }
+
+    .header-meta a {
+      color: var(--brand-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .header-meta a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(192, 132, 252, 0.6);
+    }
+
+    /* Controls: Tabs & Search */
+    .controls-wrapper {
+      background: rgba(18, 14, 36, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .controls-top {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: rgba(10, 8, 20, 0.8);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(168, 85, 247, 0.12);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.65rem 1.15rem;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--text-dim);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .tab-btn.active {
+      background: var(--brand-gradient);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .view-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .action-btn {
+      background: rgba(26, 21, 50, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.55rem 0.85rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--bg-surface-hover);
+      color: #ffffff;
+      border-color: var(--border-focus);
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.85rem 1.25rem 0.85rem 2.85rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: rgba(10, 8, 20, 0.9);
+      color: var(--text-main);
+      transition: all 0.25s ease;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--brand-light);
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2), 0 0 15px rgba(139, 92, 246, 0.2);
+    }
+
+    .search-box input::placeholder {
+      color: #64748b;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748b;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    /* Sections Accordion */
+    .sections {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .section:hover {
+      border-color: var(--border-focus);
+      box-shadow: 0 6px 24px rgba(139, 92, 246, 0.1);
+    }
+
+    .section-header {
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      background: transparent;
+      transition: background 0.2s ease;
+    }
+
+    .section-header:hover {
+      background: rgba(139, 92, 246, 0.05);
+    }
+
+    .section.open .section-header {
+      background: rgba(139, 92, 246, 0.08);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .section-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--brand-light);
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .section-icon {
+      font-size: 1rem;
+      color: var(--brand-light);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .section.open .section-icon {
+      transform: rotate(180deg);
+      background: var(--brand-gradient);
+      color: #ffffff;
+    }
+
+    .section-content {
+      padding: 1.5rem;
+      display: none;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+    }
+
+    .section.open .section-content {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-content h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 1.25rem 0 0.65rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .section-content h3:first-child {
+      margin-top: 0;
+    }
+
+    .section-content p {
+      margin-bottom: 0.85rem;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    .section-content ul,
+    .section-content ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-content li {
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+
+    .section-content strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .section-content code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      color: #d8b4fe;
+      padding: 0.2rem 0.45rem;
+      border-radius: 5px;
+      font-size: 0.85em;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      margin-right: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge-check {
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid var(--success-border);
+    }
+
+    .badge-warn {
+      background: var(--warning-bg);
+      color: var(--warning-text);
+      border: 1px solid var(--warning-border);
+    }
+
+    .badge-danger {
+      background: var(--danger-bg);
+      color: var(--danger-text);
+      border: 1px solid var(--danger-border);
+    }
+
+    /* Code & Prompt Cards */
+    .prompt-card {
+      background: rgba(10, 8, 20, 0.8);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 1.15rem;
+      margin: 1rem 0;
+      position: relative;
+    }
+
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+      padding-bottom: 0.5rem;
+    }
+
+    .prompt-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .copy-btn {
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .copy-btn:hover {
+      background: var(--brand-gradient);
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+    }
+
+    .prompt-content {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 1.25rem 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+
+    .table th {
+      background: rgba(139, 92, 246, 0.12);
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(168, 85, 247, 0.08);
+      color: var(--text-dark);
+    }
+
+    .table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table tr:hover {
+      background: rgba(139, 92, 246, 0.04);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-dim);
+    }
+
+    .footer a {
+      color: var(--brand-light);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--brand-gradient);
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 1000;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      .controls-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .tabs {
+        width: 100%;
+        justify-content: center;
+      }
+      .view-actions {
+        justify-content: center;
+      }
+      .section-header {
+        padding: 1rem;
+      }
+      .section-content {
+        padding: 1rem;
+      }
+      .section-title {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <header class="header">
+    <div class="brand-badge">
+      <span class="dot"></span>
+      MEFARIAS • LEGAL-TECH & IA
+    </div>
+    <h1>Claude para Abogados</h1>
+    <p class="subtitle">Guía interactiva y stack profesional de Proyectos, Artefactos y Cowork para el ejercicio jurídico moderno.</p>
+    
+    <div class="header-meta">
+      <span>⚖️ <strong>Dra. María Elisa Farías</strong></span>
+      <span>•</span>
+      <span>📅 Agosto 2026</span>
+      <span>•</span>
+      <span>⚡ Claude 4.5 & Sonnet 5</span>
+      <span>•</span>
+      <a href="https://github.com/Maria82420/claude-abogados" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        Ver en GitHub
+      </a>
+    </div>
+  </header>
+
+  <!-- Controls -->
+  <div class="controls-wrapper">
+    <div class="controls-top">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchMode('general')">⚖️ Para Abogados</button>
+        <button class="tab-btn" onclick="switchMode('tech')">⚡ Para Abogados + Tech</button>
+        <button class="tab-btn" onclick="switchMode('skills')">📋 Catálogo de Skills & Prompts</button>
+      </div>
+
+      <div class="view-actions">
+        <button class="action-btn" onclick="expandAll()">Expandir todo</button>
+        <button class="action-btn" onclick="collapseAll()">Colapsar</button>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Buscar por tema, jurisprudencia, artefactos, prompts, comandos..." oninput="filterSections()">
+    </div>
+  </div>
+
+  <!-- Sections Container -->
+  <main id="content" class="sections"></main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>Dra. María Elisa Farías</strong> • Especialista en Derecho Digital, Legal-Tech & IA</p>
+    <p style="margin-top: 0.4rem;">Desplegado con alta disponibilidad en Cloudflare Edge • Licencia MIT</p>
+    <p style="margin-top: 0.4rem; font-size: 0.8rem; color: #64748b;">
+      <a href="https://mefarias.com.ar" target="_blank">mefarias.com.ar</a> | 
+      <a href="https://github.com/Maria82420/claude-abogados" target="_blank">Repositorio GitHub</a> | 
+      Subdominio: <code>clase-claude.mefarias.com.ar</code>
+    </p>
+  </footer>
+</div>
+
+<div id="toast" class="toast">✨ ¡Copiado al portapapeles!</div>
+
+<script>
+const data = {
+  general: [
+    {
+      id: 'intro',
+      num: '01',
+      title: 'Introducción: ¿Qué es Claude y por qué es clave en el estudio?',
+      content: `
+        <p>Claude es una IA conversacional de última generación desarrollada por Anthropic, accesible desde <strong>claude.ai</strong> (navegador) o mediante la aplicación de escritorio y móvil. En la práctica procesal y consultiva actúa como un colega técnico senior que:</p>
+        <ul>
+          <li><strong>Analiza y coteja</strong> contratos, pliegos, jurisprudencia y normativa compleja.</li>
+          <li><strong>Redacta borradores técnicos</strong> de demandas, contestaciones, recursos y dictámenes.</li>
+          <li><strong>Organiza y sistematiza</strong> la prueba documental e indiciaria para litigios de gran volumen.</li>
+          <li><strong>Estructura matrices de riesgo</strong> legal, regulatorio y de cumplimiento (GDPR / Ley 25.326).</li>
+          <li><strong>Genera visualizaciones</strong> de cronogramas procesales y tablas comparativas para clientes o magistrados.</li>
+        </ul>
+        <div style="margin-top: 1.25rem; background: rgba(139, 92, 246, 0.08); border-left: 3px solid var(--brand-primary); padding: 1rem; border-radius: 0 8px 8px 0;">
+          <p style="margin: 0; font-size: 0.9rem;"><strong>Principio Rector de Responsabilidad Profesional:</strong> Claude <em>no reemplaza</em> el criterio legal del abogado ni la investigación probatoria de fondo. Su rol es potenciar masivamente la velocidad operativa, redacción inicial y estructuración lógica.</p>
+        </div>
+      `
+    },
+    {
+      id: 'proyectos',
+      num: '02',
+      title: 'Proyectos: Tu Carpeta Judicial Digital Centralizada',
+      content: `
+        <p>Un <strong>Proyecto en Claude</strong> funciona exactamente como un expediente o carpeta de caso donde se concentran múltiples conversaciones (chats) bajo un mismo marco fáctico, documental y normativo.</p>
+        <h3>Estructura típica de un Proyecto:</h3>
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <span class="prompt-title">Ejemplo: Demanda Laboral García c/ Textil S.A.</span>
+          </div>
+          <div class="prompt-content">PROYECTO: "García c/ Textil S.A. — Despido Directo"
+├── Chat 1: Análisis de TLCs cruzados y liquidación Art. 245 LCT
+├── Chat 2: Búsqueda y cotejo de jurisprudencia (Cámara Nacional del Trabajo)
+├── Chat 3: Redacción del escrito de inicio de demanda y ofrecimiento de prueba
+├── Chat 4: Preparación de pliego de posiciones y preguntas a testigos
+└── Chat 5: Alegatos y reserva de Caso Federal</div>
+        </div>
+        <h3>Criterios de activación de Proyectos:</h3>
+        <p><span class="badge badge-check">✓ Caso o cliente con litigio multisesión o recurrente</span></p>
+        <p><span class="badge badge-check">✓ Múltiples piezas procesales que comparten la misma documental</span></p>
+        <p><span class="badge badge-check">✓ Trabajo colaborativo en equipo (asociados, paralegales, peritos)</span></p>
+        <p><span class="badge badge-warn">✗ Consultas aisladas ("¿Cuál es el plazo del Art. 256 LCT?") → Usar Chat directo</span></p>
+      `
+    },
+    {
+      id: 'artefactos',
+      num: '03',
+      title: 'Artefactos: Documentos y Herramientas Profesionales en Tiempo Real',
+      content: `
+        <p>Un <strong>Artefacto</strong> es una ventana interactiva independiente donde Claude genera documentos estructurados, contratos, matrices o mini-aplicaciones que puedes previsualizar, editar, interactuar y exportar a Word (.docx) o PDF.</p>
+        <h3>Principales tipos de Artefactos Legales:</h3>
+        <ul>
+          <li><strong>Piezas Judiciales:</strong> Demandas completas, incidentes de nulidad, medidas cautelares, recursos extraordinarios.</li>
+          <li><strong>Documentos Transaccionales:</strong> Contratos comerciales bilaterales, NDAs, cartas documento de intimación formal.</li>
+          <li><strong>Compliance & Auditoría:</strong> Matrices de riesgos FRIA (evaluación de impacto de IA), políticas de privacidad (Ley 25.326 / RGPD).</li>
+          <li><strong>Visualizaciones Interactivas:</strong> Líneas de tiempo procesales, cronogramas de prescripción y calculadoras indemnizatorias.</li>
+        </ul>
+        <h3>Ciclo de Trabajo Recomendado:</h3>
+        <ol>
+          <li>Claude redacta el Artefacto con el formato procesal adecuado.</li>
+          <li>Revisas el documento en la ventana lateral e indicas ajustes por el chat ("Ajustá el punto IV agregando daño moral").</li>
+          <li>Claude actualiza quirúrgicamente el Artefacto sin perder el formato general.</li>
+          <li>Exportas a Word / PDF y realizas la compaginación final con tu firma digital.</li>
+        </ol>
+      `
+    },
+    {
+      id: 'cowork',
+      num: '04',
+      title: 'Cowork: Automatización y Agentes en Procesos del Estudio',
+      content: `
+        <p><strong>Cowork</strong> es la capacidad agéntica que permite a Claude ejecutar flujos de trabajo multi-paso conectados con herramientas del estudio (Google Drive, Gmail, Slack, bases jurídicas, etc.) de manera automatizada.</p>
+        <h3>Casos de automatización práctica:</h3>
+        <ul>
+          <li><strong>Monitoreo Jurisprudencial:</strong> Revisión periódica de nuevos fallos de la CSJN o Cámaras sobre materias específicas.</li>
+          <li><strong>Alertas Normativas:</strong> Monitoreo de publicaciones del Boletín Oficial / InfoLEG y notificación al equipo.</li>
+          <li><strong>Gestión Documental:</strong> Clasificación automática de cédulas y notificaciones recibidas en carpetas de Drive por carátula.</li>
+          <li><strong>Control de Caducidades:</strong> Detección de plazos fatales y recordatorios escalados.</li>
+        </ul>
+      `
+    },
+    {
+      id: 'comparativa',
+      num: '05',
+      title: 'Cuadro Comparativo: Chat vs. Artefacto vs. Cowork',
+      content: `
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Situación o Requerimiento</th>
+                <th>Chat Directo</th>
+                <th>Artefacto</th>
+                <th>Cowork</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>"¿Es válida la cláusula penal con esta tasa de interés?"</td>
+                <td><strong style="color: var(--success-text);">✓ Óptimo</strong></td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>"Redactar demanda ejecutiva con liquidación y embargo"</td>
+                <td>—</td>
+                <td><strong style="color: var(--success-text);">✓ Óptimo</strong></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>"Matriz interactiva de cumplimiento LPPD para fintech"</td>
+                <td>—</td>
+                <td><strong style="color: var(--success-text);">✓ Óptimo</strong></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>"Monitorear fallos diarios y guardar resúmenes en Drive"</td>
+                <td>—</td>
+                <td>—</td>
+                <td><strong style="color: var(--success-text);">✓ Óptimo</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `
+    },
+    {
+      id: 'limitaciones',
+      num: '06',
+      title: 'Límites Normativos, Seguridad & Privacidad (Ley 25.326)',
+      content: `
+        <p>Para un ejercicio profesional ético y jurídicamente blindado, se deben respetar los siguientes límites:</p>
+        <ul>
+          <li><span class="badge badge-danger">Prohibido</span> Cargar datos sensibles de personas físicas (DNI, domicilios, historiales médicos) sin previa seudonimización u ofuscación (Art. 5 Ley 25.326).</li>
+          <li><span class="badge badge-warn">Verificación Obligatoria</span> Chequear siempre las citas jurisprudenciales y números de causas; la IA puede sufrir alucinaciones en fallos muy recientes o específicos.</li>
+          <li><span class="badge badge-check">Buena Práctica</span> Desactivar el entrenamiento con tus datos en la configuración de privacidad de Claude (Privacy Settings).</li>
+        </ul>
+      `
+    }
+  ],
+  tech: [
+    {
+      id: 'tech-models',
+      num: 'T1',
+      title: 'Jerarquía de Modelos y Gestión de Context Window',
+      content: `
+        <p>Selección del modelo según la carga cognitiva del flujo legal:</p>
+        <ul>
+          <li><strong>Claude 3.5 / 4.5 Sonnet:</strong> El estándar de oro. Balance óptimo entre velocidad, razonamiento causal y redacción formal. Recomendado para redacción judicial y análisis contractual.</li>
+          <li><strong>Claude Opus (3 / 4.5):</strong> Máxima potencia de síntesis para expedientes complejos de cientos de fojas, auditorías de fusiones y peritajes multidimensionales.</li>
+          <li><strong>Claude Haiku:</strong> Ideal para microtareas de clasificación, extracción de entidades y sanitización de PII a bajo costo y milisegundos de latencia.</li>
+        </ul>
+      `
+    },
+    {
+      id: 'tech-artifacts',
+      num: 'T2',
+      title: 'Arquitectura de Artefactos: React, HTML5 y window.storage',
+      content: `
+        <p>Los artefactos ejecutables en Claude soportan componentes React 18, Tailwind CSS y la API nativa de persistencia <code>window.storage</code>.</p>
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <span class="prompt-title">Persistencia en Artefactos Legales</span>
+            <button class="copy-btn" onclick="copySnippet('persistencia-code')">Copiar</button>
+          </div>
+          <div class="prompt-content" id="persistencia-code">// Guardar estado de una auditoría o cálculo legal
+await window.storage.set('fria_audit_state', JSON.stringify({
+  caseNumber: 'EXP-2026/894',
+  riskLevel: 'HIGH',
+  verifiedAt: new Date().toISOString()
+}), false);
+
+// Recuperar en futuras interacciones
+const savedState = await window.storage.get('fria_audit_state');</div>
+        </div>
+      `
+    },
+    {
+      id: 'tech-mcp',
+      num: 'T3',
+      title: 'Integración MCP (Model Context Protocol) con n8n y VPS',
+      content: `
+        <p>A través de <strong>MCP</strong>, Claude se conecta de forma segura a tus servidores y bases de datos locales o en la nube:</p>
+        <ul>
+          <li><strong>n8n MCP:</strong> Disparo y monitoreo de flujos de automatización procesal desde la interfaz de chat.</li>
+          <li><strong>Bases Jurídicas / PostgreSQL:</strong> Consultas semánticas a jurisprudencia indexada en embeddings locales (pgvector).</li>
+          <li><strong>Zero Trust:</strong> Todos los endpoints operan bajo proxys inversos seguros con TLS estricto y rate limiting.</li>
+        </ul>
+      `
+    }
+  ],
+  skills: [
+    {
+      id: 'skill-diagnostico',
+      num: 'S1',
+      title: 'Skill: Diagnóstico Inicial y Matriz de Viabilidad Jurídica',
+      content: `
+        <p>Prompt maestro para ingresar un caso nuevo y obtener el diagnóstico fáctico, encuadre legal y plan de acción.</p>
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <span class="prompt-title">Prompt: Diagnóstico Integral</span>
+            <button class="copy-btn" onclick="copySnippet('prompt-diag')">Copiar Prompt</button>
+          </div>
+          <div class="prompt-content" id="prompt-diag">Actúa como abogada especialista en litigios y derecho procesal argentino.
+Analiza la siguiente situación fáctica y documental:
+
+[PEGAR AQUÍ LOS HECHOS Y DOCUMENTACIÓN SANITIZADA]
+
+Estructura tu respuesta en un Artefacto con el siguiente esquema:
+1. Resumen de Hechos Relevantes (Cronología exacta)
+2. Encuadre Jurídico de Fondo y Forma (Leyes, decretos y artículos aplicables)
+3. Matriz de Fortalezas y Debilidades Probatorias
+4. Estrategia Procesal Recomendada (Vía extrajudicial, mediación previa, demanda)
+5. Medidas Cautelares o Prueba Anticipada Sugerida
+6. Cálculo Preliminar de Rubros Reclamables</div>
+        </div>
+      `
+    },
+    {
+      id: 'skill-demanda-laboral',
+      num: 'S2',
+      title: 'Skill: Redactor de Demanda Laboral (LCT & Ley 24.013/25.323)',
+      content: `
+        <p>Prompt estructurado para generar escritos de inicio con liquidación detallada y reserva de caso federal.</p>
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <span class="prompt-title">Prompt: Demanda Laboral Completa</span>
+            <button class="copy-btn" onclick="copySnippet('prompt-demanda-lab')">Copiar Prompt</button>
+          </div>
+          <div class="prompt-content" id="prompt-demanda-lab">Genera un escrito judicial completo de INICIA DEMANDA LABORAL bajo las normas procesales argentinas.
+
+Datos del caso:
+- Actor: [PARTE ACTORA - DATOS DISOCIADOS]
+- Demandada: [RAZÓN SOCIAL DEMANDADA]
+- Fecha ingreso, egreso, categoría, mejor remuneración: [COMPLETAR]
+- Motivo de distracto: [DESPIDO DIRECTO INCAUSADO / DESPIDO INDIRECTO]
+- Intercambio telegráfico: [RESUMEN DE TLCs ENVIADOS Y RECIBIDOS]
+
+El escrito debe incluir:
+I. OBJETO
+II. HECHOS (Narrativa cronológica precisa y contundente)
+III. INTERCAMBIO TELEGRÁFICO
+IV. LIQUIDACIÓN RUBROS INDEMNIZATORIOS Y MULTAS (Art. 245, preaviso, integración, multas aplicables)
+V. DERECHO Y JURISPRUDENCIA
+VI. OFRECE PRUEBA (Documental, Testimonial, Pericial Contable, Informativa)
+VII. RESERVA CASO FEDERAL (Art. 14 Ley 48)
+VIII. PETITORIO</div>
+        </div>
+      `
+    },
+    {
+      id: 'skill-abogado-contraparte',
+      num: 'S3',
+      title: 'Skill: Abogado Contraparte (Red Team Jurídico)',
+      content: `
+        <p>Auditoría adversarial para simular las excepciones, defensas y nulidades que opondrá la parte contraria antes de presentar el escrito.</p>
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <span class="prompt-title">Prompt: Simulación de Contraparte</span>
+            <button class="copy-btn" onclick="copySnippet('prompt-contraparte')">Copiar Prompt</button>
+          </div>
+          <div class="prompt-content" id="prompt-contraparte">Actúa como el abogado litigante más incisivo y riguroso de la contraparte.
+Audita críticamente el siguiente borrador de escrito judicial:
+
+[PEGAR AQUÍ TU BORRADOR DE DEMANDA O RECURSO]
+
+Tu objetivo es encontrar todas las fisuras:
+1. Excepciones previas que opondrías (Falta de legitimación, prescripción, defecto legal, cosa juzgada).
+2. Puntos débiles de la narrativa fáctica y contradicciones testimoniales posibles.
+3. Impugnación de liquidación o cálculo de intereses.
+4. Desarticulación de la prueba ofrecida (qué pruebas te opondrías o pedirías caducidad).
+5. Sugerencias concretas para blindar el escrito antes de su presentación en mesa de entradas.</div>
+        </div>
+      `
+    },
+    {
+      id: 'skill-buscador-jurisprudencia',
+      num: 'S4',
+      title: 'Skill: Analista y Sintetizador de Jurisprudencia',
+      content: `
+        <p>Extracción de doctrinas dominantes, votos mayoritarios y argumentos clave de fallos judiciales.</p>
+        <div class="prompt-card">
+          <div class="prompt-header">
+            <span class="prompt-title">Prompt: Análisis de Fallo</span>
+            <button class="copy-btn" onclick="copySnippet('prompt-fallos')">Copiar Prompt</button>
+          </div>
+          <div class="prompt-content" id="prompt-fallos">Analiza el siguiente texto de fallo judicial y extrae la doctrina aplicable:
+
+[PEGAR TEXTO DEL FALLO O RESOLUCIÓN]
+
+Genera un Artefacto estructurado con:
+1. Ficha Técnica (Carátula, Tribunal, Sala, Fecha de sentencia, Magistrados votantes).
+2. Holding / Doctrina Central (La regla de derecho que sienta el fallo en 2 párrafos).
+3. Resumen de Hechos Determinantes.
+4. Argumentos Clave de la Mayoría vs. Disidencia (si la hubiere).
+5. Párrafos textuales listos para citar entrecomillados en escritos judiciales.
+6. Aplicabilidad práctica y precedentes análogos.</div>
+        </div>
+      `
+    }
+  ];
+};
+
+let currentMode = 'general';
+
+function switchMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  renderContent();
+  document.getElementById('searchInput').value = '';
+}
+
+function renderContent() {
+  const content = document.getElementById('content');
+  const sections = data[currentMode] || [];
+  
+  content.innerHTML = sections.map((sec, idx) => `
+    <article class="section ${idx === 0 ? 'open' : ''}" id="section-${sec.id}">
+      <div class="section-header" onclick="toggleSection('${sec.id}')">
+        <div class="section-title-group">
+          <span class="section-num">${sec.num}</span>
+          <h2 class="section-title">${sec.title}</h2>
+        </div>
+        <div class="section-icon">▼</div>
+      </div>
+      <div class="section-content">${sec.content}</div>
+    </article>
+  `).join('');
+}
+
+function toggleSection(id) {
+  const sec = document.getElementById(`section-${id}`);
+  if (sec) sec.classList.toggle('open');
+}
+
+function expandAll() {
+  document.querySelectorAll('.section').forEach(s => s.classList.add('open'));
+}
+
+function collapseAll() {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('open'));
+}
+
+function filterSections() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  document.querySelectorAll('.section').forEach(section => {
+    const title = section.querySelector('.section-title').textContent.toLowerCase();
+    const content = section.querySelector('.section-content').textContent.toLowerCase();
+    const matches = title.includes(query) || content.includes(query);
+    section.classList.toggle('hidden', !matches);
+    if (query.length > 2 && matches) {
+      section.classList.add('open');
+    }
+  });
+}
+
+function copySnippet(elementId) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('✨ ¡Copiado al portapapeles!');
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.style.display = 'block';
+  setTimeout(() => {
+    toast.style.display = 'none';
+  }, 2500);
+}
+
+// Initial render
+renderContent();
+</script>
+</body>
+</html>
